@@ -20,18 +20,6 @@ import path from "path";
 dotenv.config();
 connectDB();
 
-export const redisClient = createClient({
-  url: process.env.REDIS_URL,
-});
-
-redisClient
-  .connect()
-  .then(() => console.log("✅ Connected to Redis"))
-  .catch((err: Error) => {
-    console.error("❌ Redis connection failed:", err.message);
-    setTimeout(() => process.exit(1), 1000);
-  });
-
 const startServer = async () => {
   const PORT = process.env.PORT || 5200;
   const app = express();

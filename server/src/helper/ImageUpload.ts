@@ -10,7 +10,6 @@ const CloudinaryImage = async (file: Express.Multer.File): Promise<string> => {
     });
     return updateResponse.secure_url;
   } catch (error: any) {
-    console.log(error.message);
     throw new Error("Image upload failed");
   }
 };

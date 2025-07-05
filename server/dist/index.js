@@ -12,7 +12,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.redisClient = void 0;
 // src/index.ts
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
@@ -21,7 +20,6 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const server_1 = require("@apollo/server");
 const express4_1 = require("@as-integrations/express4");
-const redis_1 = require("redis");
 const DB_1 = __importDefault(require("./utils/DB"));
 const UserRoute_1 = __importDefault(require("./routes/UserRoute"));
 const ResturentRoutes_1 = require("./routes/ResturentRoutes");
@@ -32,16 +30,6 @@ const Resolvers_1 = require("./Graphql/resolvers/Resolvers");
 const path_1 = __importDefault(require("path"));
 dotenv_1.default.config();
 (0, DB_1.default)();
-exports.redisClient = (0, redis_1.createClient)({
-    url: process.env.REDIS_URL,
-});
-exports.redisClient
-    .connect()
-    .then(() => console.log("✅ Connected to Redis"))
-    .catch((err) => {
-    console.error("❌ Redis connection failed:", err.message);
-    setTimeout(() => process.exit(1), 1000);
-});
 const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     const PORT = process.env.PORT || 5200;
     const app = (0, express_1.default)();

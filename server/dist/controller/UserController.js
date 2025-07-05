@@ -18,7 +18,6 @@ const User_service_1 = require("../service/User.service");
 const express_validator_1 = require("express-validator");
 const Admin_service_1 = require("../service/Admin.service");
 const UserRegister = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("Received Request Body:", req.body);
     const errors = (0, express_validator_1.validationResult)(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -45,7 +44,6 @@ const UserLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    console.log("Received Data:", req.body);
     const { email, password } = req.body;
     try {
         const user = yield (0, User_service_1.LoginService)(email, password, res);

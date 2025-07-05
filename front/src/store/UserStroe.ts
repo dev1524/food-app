@@ -11,10 +11,10 @@ import { createJSONStorage, persist } from "zustand/middleware";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL;
 axios.defaults.withCredentials = true;
-axios.defaults.headers.common['Content-Type'] = 'application/json';
+axios.defaults.headers.common["Content-Type"] = "application/json";
 // If you're using tokens in Authorization header:
 axios.interceptors.request.use(function (config) {
-  const token = localStorage.getItem('token'); // or however you store your token
+  const token = localStorage.getItem("token"); // or however you store your token
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -124,8 +124,7 @@ export const UserStore = create<UserState>()(
           }
         } catch (error: unknown) {
           const err = error as AxiosError<{ message: string }>;
-          console.log(err);
-
+          toast.error(err.message);
           set({ isCheckAuth: false, isAuthentiacte: false });
         }
       },

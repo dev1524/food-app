@@ -16,7 +16,6 @@ export const UserRegister = async (
   req: Request,
   res: Response
 ): Promise<any> => {
-  console.log("Received Request Body:", req.body);
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
@@ -44,7 +43,6 @@ export const UserLogin = async (req: Request, res: Response): Promise<any> => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  console.log("Received Data:", req.body);
 
   const { email, password } = req.body;
   try {

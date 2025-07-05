@@ -23,7 +23,6 @@ const CloudinaryImage = (file) => __awaiter(void 0, void 0, void 0, function* ()
         return updateResponse.secure_url;
     }
     catch (error) {
-        console.log(error.message);
         throw new Error("Image upload failed");
     }
 });

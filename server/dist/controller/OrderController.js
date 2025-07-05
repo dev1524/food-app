@@ -16,7 +16,6 @@ exports.updateOrderStatus = exports.getAllOrders = exports.getOrders = exports.c
 const OrderSchema_1 = __importDefault(require("../models/OrderSchema"));
 const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { user, resturent, cartItems, totalPrice } = req.body;
-    console.log("Order Creation Request:", req.body);
     try {
         const newOrder = yield OrderSchema_1.default.create({
             user,
@@ -24,7 +23,6 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             cartItems,
             totalPrice,
         });
-        console.log("Order Created:", newOrder);
         res.status(201).json({ success: true, order: newOrder });
     }
     catch (error) {
@@ -85,8 +83,6 @@ const updateOrderStatus = (req, res) => __awaiter(void 0, void 0, void 0, functi
         // Update status
         order.status = status;
         yield order.save();
-        console.log("Order status:", order);
-        console.log("status:", status);
         return res
             .status(200)
             .json({ success: true, message: "Order status updated" });

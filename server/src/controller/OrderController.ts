@@ -5,8 +5,6 @@ import { Request, Response } from "express";
 export const createOrder = async (req: Request, res: Response) => {
   const { user, resturent, cartItems, totalPrice } = req.body;
 
-  console.log("Order Creation Request:", req.body);
-
   try {
     const newOrder = await OrderModel.create({
       user,
@@ -14,8 +12,6 @@ export const createOrder = async (req: Request, res: Response) => {
       cartItems,
       totalPrice,
     });
-
-    console.log("Order Created:", newOrder);
 
     res.status(201).json({ success: true, order: newOrder });
   } catch (error) {
@@ -86,8 +82,6 @@ export const updateOrderStatus = async (
     // Update status
     order.status = status;
     await order.save();
-    console.log("Order status:", order);
-    console.log("status:", status);
 
     return res
       .status(200)
